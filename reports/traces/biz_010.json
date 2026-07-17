@@ -1,0 +1,64 @@
+{
+  "question": "Which month of 2025 had the highest completed-order revenue? Show the month and the revenue.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT strftime('%Y-%m', o.order_date) AS month, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' AND o.order_date >= '2025-01-01' AND o.order_date < '2026-01-01' GROUP BY month ORDER BY revenue DESC LIMIT 1\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT strftime('%Y-%m', o.order_date) AS month, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' AND o.order_date >= '2025-01-01' AND o.order_date < '2026-01-01' GROUP BY month ORDER BY revenue DESC LIMIT 1",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT STRFTIME('%Y-%m', o.order_date) AS month, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' AND o.order_date >= '2025-01-01' AND o.order_date < '2026-01-01' GROUP BY month ORDER BY revenue DESC LIMIT 1",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "month",
+          "revenue"
+        ],
+        "rows": [
+          [
+            "2025-12",
+            636326.5
+          ]
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "elapsed_ms": 0.5178749997867271,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.9481660001474665
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.9605840006988728
+  }
+}

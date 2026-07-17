@@ -1,0 +1,62 @@
+{
+  "question": "How many completed orders were placed in 2025?",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT COUNT(*) AS completed_orders FROM orders WHERE status = 'completed' AND order_date >= '2025-01-01' AND order_date < '2026-01-01'\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT COUNT(*) AS completed_orders FROM orders WHERE status = 'completed' AND order_date >= '2025-01-01' AND order_date < '2026-01-01'",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT COUNT(*) AS completed_orders FROM orders WHERE status = 'completed' AND order_date >= '2025-01-01' AND order_date < '2026-01-01' LIMIT 200",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "completed_orders"
+        ],
+        "rows": [
+          [
+            376
+          ]
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "elapsed_ms": 0.20916599896736443,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 0.9939590017893352
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.030457999149803
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "question": "What is the total completed-order revenue per product category, highest first?",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT p.category, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.category ORDER BY revenue DESC, p.category\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT p.category, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.category ORDER BY revenue DESC, p.category",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT p.category, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.category ORDER BY revenue DESC, p.category LIMIT 200",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "category",
+          "revenue"
+        ],
+        "rows": [
+          [
+            "Home Office",
+            3234045.5
+          ],
+          [
+            "Electronics",
+            2589568.5
+          ],
+          [
+            "Sports",
+            1368750.5
+          ],
+          [
+            "Fashion",
+            899589.0
+          ],
+          [
+            "Beauty",
+            395844.5
+          ],
+          [
+            "Grocery",
+            220021.5
+          ]
+        ],
+        "row_count": 6,
+        "truncated": false,
+        "elapsed_ms": 0.6053329998394474,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.8425830003252486
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.8599590002850164
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "question": "Which 5 products generated the most revenue from completed orders? Show product name and revenue, highest first.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT p.name, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.product_id, p.name ORDER BY revenue DESC, p.name LIMIT 5\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT p.name, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.product_id, p.name ORDER BY revenue DESC, p.name LIMIT 5",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT p.name, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' GROUP BY p.product_id, p.name ORDER BY revenue DESC, p.name LIMIT 5",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "name",
+          "revenue"
+        ],
+        "rows": [
+          [
+            "Standing Desk",
+            1691918.0
+          ],
+          [
+            "27-inch Monitor",
+            1197037.5
+          ],
+          [
+            "Ergonomic Chair",
+            1070824.5
+          ],
+          [
+            "Tennis Racket",
+            674943.5
+          ],
+          [
+            "Noise-cancelling Headphones",
+            621255.0
+          ]
+        ],
+        "row_count": 5,
+        "truncated": false,
+        "elapsed_ms": 0.5887090010219254,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.6944170001806924
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.7103749996749684
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "question": "What is the average current salary per department? Use each employee's most recent salary record. Show department name and average, highest first.",
+  "database_id": "hr",
+  "selected_tables": [
+    "departments",
+    "employees",
+    "salaries"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"WITH latest AS (SELECT s.employee_id, s.amount FROM salaries AS s JOIN (SELECT employee_id, MAX(effective_date) AS max_date FROM salaries GROUP BY employee_id) AS m ON s.employee_id = m.employee_id AND s.effective_date = m.max_date) SELECT d.name, ROUND(AVG(latest.amount), 2) AS avg_salary FROM latest JOIN employees AS e ON latest.employee_id = e.employee_id JOIN departments AS d ON e.department_id = d.department_id GROUP BY d.department_id, d.name ORDER BY avg_salary DESC, d.name\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "WITH latest AS (SELECT s.employee_id, s.amount FROM salaries AS s JOIN (SELECT employee_id, MAX(effective_date) AS max_date FROM salaries GROUP BY employee_id) AS m ON s.employee_id = m.employee_id AND s.effective_date = m.max_date) SELECT d.name, ROUND(AVG(latest.amount), 2) AS avg_salary FROM latest JOIN employees AS e ON latest.employee_id = e.employee_id JOIN departments AS d ON e.department_id = d.department_id GROUP BY d.department_id, d.name ORDER BY avg_salary DESC, d.name",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "WITH latest AS (SELECT s.employee_id, s.amount FROM salaries AS s JOIN (SELECT employee_id, MAX(effective_date) AS max_date FROM salaries GROUP BY employee_id) AS m ON s.employee_id = m.employee_id AND s.effective_date = m.max_date) SELECT d.name, ROUND(AVG(latest.amount), 2) AS avg_salary FROM latest JOIN employees AS e ON latest.employee_id = e.employee_id JOIN departments AS d ON e.department_id = d.department_id GROUP BY d.department_id, d.name ORDER BY avg_salary DESC, d.name LIMIT 200",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "name",
+          "avg_salary"
+        ],
+        "rows": [
+          [
+            "Engineering",
+            133356.67
+          ],
+          [
+            "People Operations",
+            120136.0
+          ],
+          [
+            "Sales",
+            116796.92
+          ],
+          [
+            "Data & Analytics",
+            109515.0
+          ],
+          [
+            "Marketing",
+            103168.0
+          ],
+          [
+            "Finance",
+            102290.0
+          ]
+        ],
+        "row_count": 6,
+        "truncated": false,
+        "elapsed_ms": 0.22779100072511937,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.9379580007807817
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.9503339990478707
+  }
+}

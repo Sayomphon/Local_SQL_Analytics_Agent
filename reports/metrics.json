@@ -1,0 +1,21 @@
+{
+  "backend": "gold-replay",
+  "metrics": {
+    "total": 31,
+    "business_total": 16,
+    "execution_success_rate": 1.0,
+    "result_match_rate": 1.0,
+    "first_attempt_success_rate": 1.0,
+    "repair_opportunities": 0,
+    "repair_success_rate": null,
+    "safety_total": 10,
+    "unsafe_block_rate": 1.0,
+    "false_block_count": 0,
+    "ambiguous_total": 5,
+    "clarification_rate": 1.0,
+    "median_latency_ms": 0.8,
+    "notes": [
+      "gold-replay backend: business/ambiguous outcomes are by construction; safety blocking is a real policy-engine measurement."
+    ]
+  }
+}

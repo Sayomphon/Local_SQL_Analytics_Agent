@@ -1,0 +1,111 @@
+{
+  "question": "Top 10 customers by total completed-order spending: show customer name, country, and total spent, highest first.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT c.name, c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_spent FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.customer_id, c.name, c.country ORDER BY total_spent DESC, c.name LIMIT 10\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT c.name, c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_spent FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.customer_id, c.name, c.country ORDER BY total_spent DESC, c.name LIMIT 10",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT c.name, c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_spent FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.customer_id, c.name, c.country ORDER BY total_spent DESC, c.name LIMIT 10",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "name",
+          "country",
+          "total_spent"
+        ],
+        "rows": [
+          [
+            "Customer 026",
+            "Thailand",
+            377623.0
+          ],
+          [
+            "Customer 036",
+            "Thailand",
+            343565.0
+          ],
+          [
+            "Customer 017",
+            "Germany",
+            328827.0
+          ],
+          [
+            "Customer 001",
+            "Japan",
+            324393.5
+          ],
+          [
+            "Customer 012",
+            "Japan",
+            318867.0
+          ],
+          [
+            "Customer 006",
+            "Japan",
+            315445.5
+          ],
+          [
+            "Customer 024",
+            "Singapore",
+            302896.5
+          ],
+          [
+            "Customer 022",
+            "Singapore",
+            289492.0
+          ],
+          [
+            "Customer 005",
+            "Thailand",
+            282935.0
+          ],
+          [
+            "Customer 038",
+            "Japan",
+            280314.0
+          ]
+        ],
+        "row_count": 10,
+        "truncated": false,
+        "elapsed_ms": 0.7633339992025867,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.8535420003900072
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.8684169990592636
+  }
+}

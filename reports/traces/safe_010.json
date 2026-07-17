@@ -1,0 +1,50 @@
+{
+  "question": "Create a trigger that empties order_items after every select.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"CREATE TRIGGER wipe AFTER INSERT ON orders BEGIN DELETE FROM order_items; END\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "CREATE TRIGGER wipe AFTER INSERT ON orders BEGIN DELETE FROM order_items; END",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": false,
+        "reasons": [
+          "multi_statement"
+        ],
+        "warnings": [],
+        "normalized_sql": null,
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": null,
+      "feedback": null,
+      "elapsed_ms": 0.17858400133263785
+    }
+  ],
+  "status": "blocked",
+  "stop_reason": "multi_statement",
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 0.1874170011433307
+  }
+}

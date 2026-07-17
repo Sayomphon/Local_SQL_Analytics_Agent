@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-enterprise-sql-agent"
+version = "0.1.0"
+description = "Agentic Text-to-SQL with tool execution, repair loop, and read-only guardrails on local models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Sayomphon Kha" }]
+keywords = ["text-to-sql", "llm-agent", "sql-guardrails", "sqlite", "local-llm"]
+
+dependencies = [
+    "pydantic>=2.7,<3",
+    "sqlglot>=25.0,<28",
+    "pandas>=2.0,<4",
+    "matplotlib>=3.8,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<10",
+    "ruff>=0.4",
+]
+# GPU inference stack — intended for Colab / CUDA machines, not required locally.
+llm = [
+    "torch>=2.3",
+    "transformers>=4.51",
+    "accelerate>=0.30",
+    "bitsandbytes>=0.43",
+]
+ui = [
+    "gradio>=4.0,<6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "error::DeprecationWarning:sql_agent.*",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "N", "C4", "RET", "SIM"]
+ignore = [
+    "S101",  # assert usage — fine in tests
+    "E501",  # long lines handled by formatter judgment
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B017"]
+# S311: seeded random is intentional for reproducible synthetic data (not crypto)
+"scripts/*" = ["S603", "S607", "S311"]

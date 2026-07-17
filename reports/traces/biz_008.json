@@ -1,0 +1,80 @@
+{
+  "question": "Total completed-order revenue by customer country, highest first.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.country ORDER BY revenue DESC, c.country\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.country ORDER BY revenue DESC, c.country",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT c.country, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY c.country ORDER BY revenue DESC, c.country LIMIT 200",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "country",
+          "revenue"
+        ],
+        "rows": [
+          [
+            "Thailand",
+            2096218.0
+          ],
+          [
+            "Japan",
+            1993861.0
+          ],
+          [
+            "Singapore",
+            1749521.5
+          ],
+          [
+            "Germany",
+            1589365.0
+          ],
+          [
+            "United States",
+            1278854.0
+          ]
+        ],
+        "row_count": 5,
+        "truncated": false,
+        "elapsed_ms": 0.5948750003881287,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.7391250003129244
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.7564170011610258
+  }
+}

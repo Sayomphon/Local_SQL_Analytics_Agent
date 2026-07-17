@@ -1,0 +1,62 @@
+{
+  "question": "What is the average number of items (sum of quantities) per completed order?",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT ROUND(AVG(order_quantity), 2) AS avg_items_per_order FROM (SELECT o.order_id, SUM(oi.quantity) AS order_quantity FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY o.order_id)\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT ROUND(AVG(order_quantity), 2) AS avg_items_per_order FROM (SELECT o.order_id, SUM(oi.quantity) AS order_quantity FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY o.order_id)",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT ROUND(AVG(order_quantity), 2) AS avg_items_per_order FROM (SELECT o.order_id, SUM(oi.quantity) AS order_quantity FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' GROUP BY o.order_id) LIMIT 200",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "avg_items_per_order"
+        ],
+        "rows": [
+          [
+            7.48
+          ]
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "elapsed_ms": 0.3468750001047738,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 1.2558750004245667
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 1.2706249999610009
+  }
+}

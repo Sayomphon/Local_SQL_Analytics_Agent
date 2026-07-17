@@ -1,0 +1,72 @@
+{
+  "question": "Which 3 customers have the most cancelled orders? Show name and cancelled count, highest first.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT c.name, COUNT(*) AS cancelled_count FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id WHERE o.status = 'cancelled' GROUP BY c.customer_id, c.name ORDER BY cancelled_count DESC, c.name LIMIT 3\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT c.name, COUNT(*) AS cancelled_count FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id WHERE o.status = 'cancelled' GROUP BY c.customer_id, c.name ORDER BY cancelled_count DESC, c.name LIMIT 3",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": true,
+        "reasons": [],
+        "warnings": [],
+        "normalized_sql": "SELECT c.name, COUNT(*) AS cancelled_count FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id WHERE o.status = 'cancelled' GROUP BY c.customer_id, c.name ORDER BY cancelled_count DESC, c.name LIMIT 3",
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": {
+        "columns": [
+          "name",
+          "cancelled_count"
+        ],
+        "rows": [
+          [
+            "Customer 007",
+            5
+          ],
+          [
+            "Customer 004",
+            3
+          ],
+          [
+            "Customer 012",
+            3
+          ]
+        ],
+        "row_count": 3,
+        "truncated": false,
+        "elapsed_ms": 0.20858299831161276,
+        "error": null,
+        "error_type": null
+      },
+      "feedback": null,
+      "elapsed_ms": 0.9868750003079185
+    }
+  ],
+  "status": "completed",
+  "stop_reason": null,
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 0.9999999983847374
+  }
+}

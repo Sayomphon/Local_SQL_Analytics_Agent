@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Generated databases (recreate with scripts/create_demo_db.py)
+data/databases/*.sqlite
+data/databases/*.sqlite3
+data/databases/*.db
+
+# Local environment / secrets — never commit credentials
+.env
+.env.*
+*.key
+*.pem
+
+# OS noise
+.DS_Store
+
+# Model weights / caches
+models/
+.cache/

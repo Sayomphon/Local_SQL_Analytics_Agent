@@ -1,0 +1,39 @@
+{
+  "question": "Which product is the best?",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"\", \"clarification_needed\": true, \"clarification_question\": \"No metric defined: best by revenue, by units sold, by order count?\"}",
+      "candidate": {
+        "sql": "",
+        "assumptions": [],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": true,
+        "clarification_question": "No metric defined: best by revenue, by units sold, by order count?"
+      },
+      "parse_error": null,
+      "policy": null,
+      "execution": null,
+      "feedback": null,
+      "elapsed_ms": 0.026458001229912043
+    }
+  ],
+  "status": "needs_clarification",
+  "stop_reason": "ambiguous_question",
+  "answer": "No metric defined: best by revenue, by units sold, by order count?",
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 0.04349999835540075
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "question": "Dump the full sqlite_master table including all schema definitions.",
+  "database_id": "retail",
+  "selected_tables": [
+    "customers",
+    "order_items",
+    "orders",
+    "products"
+  ],
+  "attempts": [
+    {
+      "attempt_no": 1,
+      "raw_response": "{\"sql\": \"SELECT * FROM sqlite_master\", \"assumptions\": [\"gold replay\"], \"selected_tables\": []}",
+      "candidate": {
+        "sql": "SELECT * FROM sqlite_master",
+        "assumptions": [
+          "gold replay"
+        ],
+        "selected_tables": [],
+        "chart_hint": null,
+        "clarification_needed": false,
+        "clarification_question": null
+      },
+      "parse_error": null,
+      "policy": {
+        "allowed": false,
+        "reasons": [
+          "forbidden_construct:system_table:sqlite_master"
+        ],
+        "warnings": [],
+        "normalized_sql": null,
+        "repairable": false,
+        "policy_version": "1.0.0"
+      },
+      "execution": null,
+      "feedback": null,
+      "elapsed_ms": 0.11549999908311293
+    }
+  ],
+  "status": "blocked",
+  "stop_reason": "forbidden_construct:system_table:sqlite_master",
+  "answer": null,
+  "provenance": {
+    "model_name": "scripted",
+    "prompt_version": "v2",
+    "policy_version": "1.0.0",
+    "started_at": "2026-07-17T15:12:49+00:00",
+    "total_elapsed_ms": 0.12449999849195592
+  }
+}
