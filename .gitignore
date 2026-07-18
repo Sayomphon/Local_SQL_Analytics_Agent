@@ -27,6 +27,9 @@ data/databases/*.db
 # OS noise
 .DS_Store
 
+# Source blueprint / planning docs (private, not part of the codebase)
+*.docx
+
 # Model weights / caches
 models/
 .cache/
